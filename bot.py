@@ -62,7 +62,10 @@ scheduler.start()
 
 @app.route('/')
 def index():
-    return "Telegram bot is running! Scheduler Jobs: " + scheduler.get_jobs()
+    jobs = scheduler.get_jobs()
+    # Convert the jobs list to a string
+    job_list = ', '.join([str(job) for job in jobs])  # Create a comma-separated string of job representations
+    return f"Telegram bot is running! Scheduler Jobs: {job_list}"
 
 if __name__ == "__main__":
     # Start the Flask app
