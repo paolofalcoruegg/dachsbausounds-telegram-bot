@@ -40,8 +40,13 @@ Wenn ihr euren Slot nicht braucht, Nachricht kopieren, euch rausnehmen und wiede
 
 # Async function to send the scheduled message
 async def send_message_async():
-    await bot.send_message(chat_id=chat_id, text=announcement_text, message_thread_id=message_thread_id)
-    logger.info("Sent scheduled message.")
+    try:
+        # Try sending the message
+        await bot.send_message(chat_id=chat_id, text=announcement_text, message_thread_id=message_thread_id)
+        logger.info("Sent scheduled message successfully.")
+    except Exception as e:
+        # Log the exception if an error occurs
+        logger.error(f"Failed to send message: {e}", exc_info=True)
 
 # Function to schedule the async message sending
 def send_scheduled_message():
@@ -54,8 +59,8 @@ def send_scheduled_message():
 # Initialize the scheduler
 scheduler = BackgroundScheduler(timezone=zurich_timezone)
 
-# Schedule the message every Saturday at 2 PM Zurich time
-scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=14, minute=0))
+# Schedule the message every Saturday at 1:30 PM Zurich time
+scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=13, minute=30))
 
 # Start the scheduler
 scheduler.start()
