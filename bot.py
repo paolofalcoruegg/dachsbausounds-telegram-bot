@@ -40,7 +40,7 @@ def send_scheduled_message():
 scheduler = BlockingScheduler(timezone=zurich_timezone)
 
 # Schedule the message every Saturday at 1 PM Zurich time
-scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=13, minute=00))
+scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=14, minute=50))
 
 # Start the scheduler
 scheduler.start()
