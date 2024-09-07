@@ -4,6 +4,11 @@ from apscheduler.triggers.cron import CronTrigger
 import asyncio
 import pytz
 import os
+import logging
+from datetime import datetime
+
+# Configure logging to output to stdout
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Get the token and chat_id from environment variables (Heroku best practice)
 bot_token = os.environ.get('BOT_TOKEN')
@@ -31,16 +36,26 @@ Wenn ihr euren Slot nicht braucht, Nachricht kopieren, euch rausnehmen und wiede
 
 # Function to send the message
 async def send_message_async():
-    await bot.send_message(chat_id=chat_id, text=announcement_text, message_thread_id=message_thread_id)
+    try:
+        await bot.send_message(chat_id=chat_id, text=announcement_text, message_thread_id=message_thread_id)
+        logging.info("Message sent successfully.")
+    except Exception as e:
+        logging.error(f"Failed to send message: {e}")
 
 def send_scheduled_message():
+    logging.info("Attempting to send scheduled message...")
     asyncio.run(send_message_async())
 
 # Initialize the scheduler
 scheduler = BlockingScheduler(timezone=zurich_timezone)
 
 # Schedule the message every Saturday at 15:30 PM Zurich time
-scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=15, minute=30))
+job = scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=16, minute=00))
 
 # Start the scheduler
 scheduler.start()
+
+# Log current time and next scheduled job time
+current_time = datetime.now(zurich_timezone).strftime('%Y-%m-%d %H:%M:%S')
+next_run_time = job.next_run_time.strftime('%Y-%m-%d %H:%M:%S')
+logging.info(f"The current time is {current_time}; the next scheduled job is for {next_run_time}.")
