@@ -30,9 +30,9 @@ announcement_text = """📅 Bitte eintragen: BR Zeitplan für nächste Woche �
 
 MO: Manic Pixxxies (Abend)
 DI: Corokia (17-19h), Jam (Abend)
-MI: Dylan (Tagsüber)
+MI: Dylan (Tagsüber), Zahfee (Abend)
 DO: Rapid Anti (Abend)
-FR:
+FR: Saltwater Sirens (Abend)
 SA:
 SO: Pferd (Abend)
 
@@ -45,20 +45,24 @@ async def send_message_async():
 
 # Function to schedule the async message sending
 def send_scheduled_message():
-    asyncio.run(send_message_async())
+    logger.info("Attempting to send scheduled message..")
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(send_message_async())
+    loop.close()
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler(timezone=zurich_timezone)
 
-# Schedule the message every Saturday at 1 PM Zurich time
-scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=13, minute=0))
+# Schedule the message every Saturday at 2 PM Zurich time
+scheduler.add_job(send_scheduled_message, CronTrigger(day_of_week='sat', hour=14, minute=0))
 
 # Start the scheduler
 scheduler.start()
 
 @app.route('/')
 def index():
-    return "Telegram bot is running!"
+    return "Telegram bot is running! Scheduler Jobs: " + scheduler.get_jobs()
 
 if __name__ == "__main__":
     # Start the Flask app
