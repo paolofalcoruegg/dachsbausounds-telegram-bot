@@ -24,10 +24,10 @@ zurich_timezone = pytz.timezone('Europe/Zurich')
 # Define the message you want to send
 announcement_text = """📅 Bitte eintragen: BR Zeitplan für nächste Woche 📅
 
-MO: Manic Pixxxies (Abend)
+MO: Manic Pixxxies (ab 17:30)
 DI: Corokia (17-19h), Jam (Abend)
-MI: Dylan (Tagsüber), Zahfee (Abend)
-DO: Rapid Anti (Abend)
+MI: Dylan (14-17h), Zahfee (ab 18h)
+DO: Rapid Anti (ab 18h)
 FR: Saltwater Sirens (Abend)
 SA:
 SO: Pferd (Abend)
