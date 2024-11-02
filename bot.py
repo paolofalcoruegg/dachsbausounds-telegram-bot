@@ -5,7 +5,7 @@ import asyncio
 import pytz
 import os
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Configure logging to output to stdout
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -22,9 +22,9 @@ bot = Bot(token=bot_token)
 zurich_timezone = pytz.timezone('Europe/Zurich')
 
 # Get the formatted dates of next Monday and Sunday
-today = datetime.date.today() # Get today's date
-next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1) # Calculate the date of next Monday
-next_sunday = next_monday + datetime.timedelta(days=6) # Calculate the date of next Sunday
+today = datetime.now(zurich_timezone).date()  # Get today's date
+next_monday = today + timedelta(days=-today.weekday(), weeks=1) # Calculate the date of next Monday
+next_sunday = next_monday + timedelta(days=6) # Calculate the date of next Sunday
 week_number = next_monday.isocalendar()[1] # Get the week number for next Monday
 # Format the dates as day.month.year
 formatted_monday = next_monday.strftime('%d.%m.%Y')
