@@ -38,7 +38,7 @@ DI: Corokia (17-19h), Jam (Abend)
 MI: Dylan (14-17h), Zahfee (ab 18h)
 DO: Rapid Anti (ab 18h)
 FR: 
-SA: Manic Pixxxies (13-17h)
+SA: 
 SO: Pferd (Abend)
 
 Wenn ihr euren Slot nicht braucht, Nachricht kopieren, euch rausnehmen und wieder in den Chat schicken. Wenn ihr einen freien Slot reservieren wollt, Nachricht kopieren, eintragen, wieder in den Chat schicken. Bitte auch bei spontanen Änderungen! 💕"""
