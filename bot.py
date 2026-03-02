@@ -35,8 +35,8 @@ announcement_text = f"""📅 Bitte eintragen: BR Zeitplan für nächste Woche, M
 
 MO: Saltwater Sirens (Abend)
 DI: Corokia (17-19h), Jam (Abend)
-MI: Dylan (14-17h), Zahfee (bis Ende Jahr unregelmässig)
-DO: 
+MI: Dylan (14-17h), Zahfee (ab 18h)
+DO: Rapid Anti (ab 18h)
 FR: 
 SA: 
 SO: Pferd (Abend)
